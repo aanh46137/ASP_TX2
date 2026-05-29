@@ -1,0 +1,69 @@
+﻿@model IEnumerable<LuyenTapTX2_3.Models.Product>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Sản phẩm</h2>
+
+@using (Html.BeginForm())
+            {
+            <div class="input-group">
+                <input type="text" name="searchString" placeholder="Giá tối thiểu" class="form-control" value="@Request["searchString"]"  />
+                <input type="submit" value="Tìm kiếm" class="btn btn-info" />
+            </div>
+            @Html.ValidationMessage("searchString", new { @class = "text-danger"})
+            }
+
+
+<p style="margin-top: 10px">
+    @Html.ActionLink("Thêm mới", "Create", null, new { @class = "btn btn-primary" })
+</p>
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div style="border: 1px solid black" class="col-sm-6 sol-md-4 col-lg-3 table-bordered text-center">
+            @{
+                string path = "~/Images/" + item.ImagePath;
+            }
+
+            <img src="@Url.Content(path)" height="100" />
+            <br />
+            Mã Hãng: @Html.DisplayFor(modelItem => item.Categoryid) <br />
+            Tên SP: @Html.DisplayFor(modelItem => item.ProdName) <br />
+            Giá Tiền: @Html.DisplayFor(modelItem => item.Price) <br />
+            <br />
+            @Html.ActionLink("Edit", "Edit", new { id = item.Pid }) |
+            @Html.ActionLink("Details", "Details", new { id = item.Pid }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.Pid })
+
+
+
+            @*<tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Categoryid)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProdName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MetaTitle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ImagePath)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Pid }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Pid }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Pid })
+            </td>
+        </tr>*@
+        </div>
+    }
+</div>
