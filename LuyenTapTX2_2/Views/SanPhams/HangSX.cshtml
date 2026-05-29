@@ -1,0 +1,35 @@
+﻿@model IEnumerable<LuyenTapTX2_2.Models.HangSanXuat>
+@{
+    ViewBag.Title = "HangSX";
+}
+
+<h2>HangSX</h2>
+
+<p>
+    @Html.ActionLink("Thêm mới sản phẩm", "Create") 
+</p>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.TenHang)
+        </th>
+        <th>
+            Số lượng
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.TenHang)
+        </td>
+        <td>
+            @item.SanPhams.Count()
+        </td>
+    </tr>
+    }
+
+</table>
+
