@@ -1,0 +1,46 @@
+﻿@model IEnumerable<PracticeFruit02.Models.SanPham>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2 style="text-align: center">DANH SÁCH SẢN PHẨM</h2>
+
+@using (Html.BeginForm())
+            {
+                <div class="input-group" >
+                    <input type="text" name="searchString" placeholder="Nhập đơn giá" class="form-control" value="@Request["searchString"]" />
+                    <input type="submit" value="Tìm kiếm" class="btn btn-info"/>
+                </div>
+                @Html.ValidationMessage("searchString", new {@class="text-danger"})
+            }
+
+
+<p style="margin-top: 10px">
+    @Html.ActionLink("Thêm mới", "Create", null, new { @class = "btn btn-primary" })
+</p>
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div style="border: 1px solid black" class="col-sm-6 col-md-4 col-lg-3 table-bordered text-center">
+            @{
+                string path = "~/images/" + item.HinhAnh;
+            }
+            <img src="@Url.Content(path)" height="100" />
+            <br />
+            Tên hãng: @Html.DisplayFor(modelItem => item.HangSanXuat.TenHang) <br />
+            Tên sản phẩm: @Html.DisplayFor(modelItem => item.TenSP) <br />
+            Số lượng: @Html.DisplayFor(modelItem => item.SoLuong)
+            <br />
+            Đơn giá: @Html.DisplayFor(modelItem => item.DonGia)
+            <br />
+            @Html.ActionLink("Sửa", "Edit", new { id = item.MaSP }) |
+            @Html.ActionLink("Chi tiết", "Details", new { id = item.MaSP }) |
+            @Html.ActionLink("Xoá", "Delete", new { id = item.MaSP })
+
+        </div>
+       
+    }
+</div>
+
+

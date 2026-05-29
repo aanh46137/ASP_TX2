@@ -1,0 +1,71 @@
+﻿@model PracticeFruit02.Models.SanPham
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>XOÁ SẢN PHẨM</h2>
+
+<div>
+    <h4>Thông tin sản phẩm</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.HangSanXuat.TenHang)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HangSanXuat.TenHang)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TenSP)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TenSP)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SoLuong)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SoLuong)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DonGia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DonGia)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HinhAnh)
+        </dt>
+
+        <dd>
+            @{ string path = "~/images/" + Model.HinhAnh;
+                    
+                    }
+            <img src="@Url.Content(path)" height="150"/>
+
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Xoá" class="btn btn-default" onclick="return confirm('Bạn có chắc muốn xoá sản phẩm này không');" /> |
+            @Html.ActionLink("Quay lại", "Index")
+        </div>
+    }
+    @if(ViewBag.ErrorMessage != null)
+            {
+                <span style="color: red"> ViewBag.ErrorMessage </span>
+            }
+</div>
